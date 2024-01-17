@@ -1,0 +1,28 @@
+---
+"%test":
+  quarkus:
+    oidc:
+      auth-server-url: ${keycloak.url}/realms/quarkus/
+
+quarkus:
+  oidc:
+    client-id: quarkus-service-app
+    application-type: service
+    token:
+      header: X-Auth-Token
+
+    token-cache:
+      # 'max-size' is 0 by default so the cache can be activated
+      # by setting 'max-size' to a positive value.
+      max-size: 1000
+
+      # 'time-to-live' specifies how long a cache entry can be valid
+      # for and will be used by a cleanup timer.
+      time-to-live: 30S
+
+      # 'clean-up-timer-interval' is not set by default so the cleanup
+      # timer can be activated by setting 'clean-up-timer-interval'.
+      clean-up-timer-interval: 1M
+
+  devservices:
+    enabled: false
